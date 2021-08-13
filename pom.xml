@@ -28,10 +28,7 @@
         <configuration>
           <source>${maven.compiler.source}</source>
           <target>${maven.compiler.target}</target>
-          <!-- IMPORTANT -->
-          <useIncrementalCompilation>false</useIncrementalCompilation>
           <encoding>${project.build.sourceEncoding}</encoding>
-          <compilerId>groovy-eclipse-compiler</compilerId>
         </configuration>
         <dependencies>
           <dependency>
@@ -45,6 +42,30 @@
             <version>${version.groovy-eclipse-batch}</version>
           </dependency>
         </dependencies>
+        <executions>
+          <execution>
+            <id>default-compile</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+            <configuration>
+              <compilerId>javac</compilerId>
+              <verbose>true</verbose>
+            </configuration>
+          </execution>
+          <execution>
+            <id>default-testCompile</id>
+            <phase>test-compile</phase>
+            <goals>
+              <goal>testCompile</goal>
+            </goals>
+            <configuration>
+              <compilerId>groovy-eclipse-compiler</compilerId>
+              <verbose>true</verbose>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
